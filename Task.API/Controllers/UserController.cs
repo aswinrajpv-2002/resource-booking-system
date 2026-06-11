@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Task.Application.Dtos;
 using Task.Application.Services.Interface;
@@ -26,6 +27,13 @@ namespace Task.API.Controllers
         {
             var users = await _userService.GetAllUsersAsync();
             return Ok(users);
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteUser(Guid id)
+        {
+            var result = await _userService.DeleteUserAsync(id);
+            if (!result) return NotFound();
+            return NoContent();
         }
     }
 }

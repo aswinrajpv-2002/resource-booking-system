@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Task.Application.Dtos;
+using Task.Application.Services.Implementation;
 using Task.Application.Services.Interface;
 using Task.Domain.Entities;
 
@@ -29,6 +30,13 @@ namespace Task.API.Controllers
         {
             var bookings=await _bookingService.GetAllBookingAsync();
             return Ok(bookings);
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteBookingAsync(Guid id)
+        {
+            var result = await _bookingService.DeleteBookingAsync(id);
+            if (!result) return NotFound();
+            return NoContent();
         }
 
     }

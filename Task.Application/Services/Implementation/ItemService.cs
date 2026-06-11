@@ -39,5 +39,14 @@ namespace Task.Application.Services.Implementation
         {
            return  await _context.Items.ToListAsync();
         }
+
+        public async Task<bool> DeleteItemAsync(Guid id)
+        {
+            var item = await _context.Items.FindAsync(id);
+            if (item == null) return false;
+            _context.Items.Remove(item);
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }

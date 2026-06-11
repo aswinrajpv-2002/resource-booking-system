@@ -10,5 +10,6 @@ namespace Task.Application.Services.Interface
     {
         public Task<Item> CreateItemAsync(ItemDto dto);
         public Task<List<Item>> GetAllItemsAsync();
+        public Task<bool> DeleteItemAsync(Guid id);
     }
 }

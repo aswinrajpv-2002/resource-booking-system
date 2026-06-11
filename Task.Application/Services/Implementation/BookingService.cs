@@ -40,5 +40,16 @@ namespace Task.Application.Services.Implementation
         {
             return await _context.Bookings.ToListAsync();
         }
+        
+        public async Task<bool> DeleteBookingAsync(Guid id)
+        {
+            var booking = await _context.Bookings.FindAsync(id);
+
+            if (booking == null) return false;
+
+            _context.Bookings.Remove(booking);
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }

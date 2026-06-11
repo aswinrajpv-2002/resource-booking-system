@@ -28,5 +28,12 @@ namespace Task.API.Controllers
             var items = await _itemService.GetAllItemsAsync();
             return Ok(items);
         }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteItem(Guid id)
+        {
+            var result = await _itemService.DeleteItemAsync(id);
+            if (!result) return NotFound();
+            return NoContent();
+        }
     }
 }

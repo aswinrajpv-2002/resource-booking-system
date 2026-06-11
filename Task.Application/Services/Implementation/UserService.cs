@@ -15,9 +15,10 @@ namespace Task.Application.Services.Implementation
 
         public UserService(AppDbContext context)
         {
-            _context = context; 
+            _context = context;
         }
-        public async Task<User> createUserAsync(UserDto dto) {
+        public async Task<User> createUserAsync(UserDto dto)
+        {
             var user = new User
             {
                 FirstName = dto.FirstName,
@@ -34,6 +35,16 @@ namespace Task.Application.Services.Implementation
         public async Task<List<User>> GetAllUsersAsync()
         {
             return await _context.User.ToListAsync();
+        }
+
+        public async Task<bool> DeleteUserAsync(Guid id)
+        {
+            var user = await _context.User.FindAsync(id);
+            if (user == null) return false;
+
+            _context.User.Remove(user);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

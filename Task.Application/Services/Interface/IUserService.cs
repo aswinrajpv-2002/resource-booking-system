@@ -10,5 +10,7 @@ namespace Task.Application.Services.Interface
     {
         public Task<User> createUserAsync(UserDto dto);
         public Task<List<User>> GetAllUsersAsync();
+
+        public Task<bool> DeleteUserAsync(Guid id);
     }
 }
