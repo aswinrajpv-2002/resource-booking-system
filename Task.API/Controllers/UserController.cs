@@ -35,5 +35,13 @@ namespace Task.API.Controllers
             if (!result) return NotFound();
             return NoContent();
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(Guid id,UpdateUserDto dto)
+        {
+            var result = await _userService.UpdateUserAsync(id, dto);
+            if (result == null) return NotFound();
+            return Ok(result);
+
+        }
     }
 }

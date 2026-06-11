@@ -35,5 +35,12 @@ namespace Task.API.Controllers
             if (!result) return NotFound();
             return NoContent();
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult>UpdateItem(Guid id,UpdateItemDto dto)
+        {
+            var result = await _itemService.UpdateItemAsync(id,dto);
+            if (result==null) return NotFound();
+            return Ok(result);
+        }
     }
 }

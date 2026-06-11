@@ -28,7 +28,7 @@ namespace Task.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllBookings()
         {
-            var bookings=await _bookingService.GetAllBookingAsync();
+            var bookings = await _bookingService.GetAllBookingAsync();
             return Ok(bookings);
         }
         [HttpDelete]
@@ -37,6 +37,13 @@ namespace Task.API.Controllers
             var result = await _bookingService.DeleteBookingAsync(id);
             if (!result) return NotFound();
             return NoContent();
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateBooking(Guid id,UpdateBookingDto dto)
+        {
+            var booking = await _bookingService.UpdateBookingAsync(id,dto);
+            if (booking == null) return NotFound();
+            return Ok(booking);
         }
 
     }

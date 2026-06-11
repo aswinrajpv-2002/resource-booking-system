@@ -46,5 +46,18 @@ namespace Task.Application.Services.Implementation
             await _context.SaveChangesAsync();
             return true;
         }
+        public async Task<User?> UpdateUserAsync(Guid id, UpdateUserDto dto)
+        {
+            var user = await _context.User.FindAsync(id);
+
+            if (user == null) return null;
+
+            user.FirstName = dto.FirstName;
+            user.LastName = dto.LastName;
+            user.IsActive = dto.IsActive;
+
+            await _context.SaveChangesAsync();
+            return user;
+        }
     }
 }

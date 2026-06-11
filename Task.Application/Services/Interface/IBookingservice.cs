@@ -11,5 +11,7 @@ namespace Task.Application.Services.Interface
         Task<Booking> CreateBookingAsync(BookingReqDto dto);
         Task<List<Booking>> GetAllBookingAsync();
         Task<bool> DeleteBookingAsync(Guid id);
+
+        Task<Booking?> UpdateBookingAsync(Guid id, UpdateBookingDto dto);
     }
 }

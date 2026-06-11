@@ -12,5 +12,7 @@ namespace Task.Application.Services.Interface
         public Task<List<User>> GetAllUsersAsync();
 
         public Task<bool> DeleteUserAsync(Guid id);
+
+        public Task<User?> UpdateUserAsync(Guid id, UpdateUserDto dto);
     }
 }

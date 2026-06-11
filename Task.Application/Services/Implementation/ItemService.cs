@@ -48,5 +48,21 @@ namespace Task.Application.Services.Implementation
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<Item?> UpdateItemAsync(Guid id, UpdateItemDto dto)
+        {
+            var item = await _context.Items.FindAsync(id);
+
+            if (item == null) return null;
+
+            item.name = dto.name;
+            item.description = dto.description;
+            item.IsUsing = dto.IsUsing;
+            item.type = dto.type;
+
+            await _context.SaveChangesAsync();
+            return item;
+
+        }
     }
 }

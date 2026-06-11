@@ -51,5 +51,20 @@ namespace Task.Application.Services.Implementation
             await _context.SaveChangesAsync();
             return true;
         }
+        public async Task<Booking?> UpdateBookingAsync(Guid id,UpdateBookingDto dto)
+        {
+            var booking = await _context.Bookings.FindAsync(id);
+
+            if (booking == null) return null;
+
+            booking.StartDate = dto.StartDate;
+            booking.EndDate = dto.EndDate;
+            booking.Purpose = dto.Purpose;
+            booking.Status = dto.Status;
+
+            await _context.SaveChangesAsync();
+            return booking;
+
+        }
     }
 }
