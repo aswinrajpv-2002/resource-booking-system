@@ -22,5 +22,11 @@ namespace Task.API.Controllers
             var items = await _itemService.CreateItemAsync(request);
             return Ok(items);
         }
+        [HttpGet]
+        public async Task<IActionResult> GetAllItems()
+        {
+            var items = await _itemService.GetAllItemsAsync();
+            return Ok(items);
+        }
     }
 }

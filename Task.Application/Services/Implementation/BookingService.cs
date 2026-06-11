@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Task.Application.Dtos;
@@ -32,6 +33,12 @@ namespace Task.Application.Services.Implementation
             await _context.SaveChangesAsync();
 
             return booking;
+        }
+
+
+        public async Task<List<Booking>> GetAllBookingAsync()
+        {
+            return await _context.Bookings.ToListAsync();
         }
     }
 }

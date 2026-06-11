@@ -2,8 +2,7 @@
 using Task.Application.Dtos;
 using Task.Application.Services.Interface;
 using Task.Domain.Entities;
-using Task.Domain.Enums;
-using Task.Infrastructure.Persistance;
+
 
 namespace Task.API.Controllers
 {
@@ -24,6 +23,12 @@ namespace Task.API.Controllers
 
             var booking = await _bookingService.CreateBookingAsync(request);
             return Ok(booking);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAllBookings()
+        {
+            var bookings=await _bookingService.GetAllBookingAsync();
+            return Ok(bookings);
         }
 
     }

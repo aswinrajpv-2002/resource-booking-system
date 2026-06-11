@@ -21,5 +21,11 @@ namespace Task.API.Controllers
             var users= await _userService.createUserAsync(request);
             return Ok(users);
         }
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _userService.GetAllUsersAsync();
+            return Ok(users);
+        }
     }
 }

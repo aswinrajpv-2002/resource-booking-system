@@ -9,5 +9,6 @@ namespace Task.Application.Services.Interface
     public interface IItemService
     {
         public Task<Item> CreateItemAsync(ItemDto dto);
+        public Task<List<Item>> GetAllItemsAsync();
     }
 }

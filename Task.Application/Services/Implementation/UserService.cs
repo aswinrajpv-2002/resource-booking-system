@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Task.Application.Dtos;
@@ -28,8 +29,11 @@ namespace Task.Application.Services.Implementation
             await _context.SaveChangesAsync();
 
             return user;
+        }
 
-
+        public async Task<List<User>> GetAllUsersAsync()
+        {
+            return await _context.User.ToListAsync();
         }
     }
 }

@@ -9,5 +9,6 @@ namespace Task.Application.Services.Interface
     public interface IUserService
     {
         public Task<User> createUserAsync(UserDto dto);
+        public Task<List<User>> GetAllUsersAsync();
     }
 }

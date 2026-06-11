@@ -9,5 +9,6 @@ namespace Task.Application.Services.Interface
     public interface IBookingservice
     {
         Task<Booking> CreateBookingAsync(BookingReqDto dto);
+        Task<List<Booking>> GetAllBookingAsync();
     }
 }
